@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: snack-vending-server
+
+  # 默认使用 H2 文件数据库（零配置，开箱即用）
+  datasource:
+    url: jdbc:h2:file:./data/snack_vending;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+# 订单支付超时时间（分钟）
+order:
+  payment:
+    timeout-minutes: 5
+
+# 日志
+logging:
+  level:
+    com.snackvending: info
+    org.hibernate.SQL: warn
+
+# SpringDoc
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

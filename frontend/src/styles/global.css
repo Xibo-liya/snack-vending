@@ -1,0 +1,284 @@
+/* ===== 全局样式 - 零食自助售货系统 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  background: #f5f7fa;
+}
+
+/* 禁止页面缩放 */
+body {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 1080P 横屏适配 - 等比缩放容器 */
+.screen-wrapper {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  background: #f5f7fa;
+  overflow: hidden;
+}
+
+/* 通用页面容器 */
+.page-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 顶部导航 */
+.app-header {
+  height: 90px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  box-shadow: 0 4px 16px rgba(238, 90, 82, 0.25);
+  flex-shrink: 0;
+}
+
+.app-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.app-header .logo .logo-icon {
+  font-size: 44px;
+}
+
+.app-header .nav-menu {
+  display: flex;
+  gap: 12px;
+}
+
+.app-header .nav-btn {
+  padding: 14px 36px;
+  font-size: 22px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-header .nav-btn:hover,
+.app-header .nav-btn.active {
+  background: #fff;
+  color: #ee5a52;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.app-header .device-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.app-header .device-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #67c23a;
+  animation: pulse 1.8s infinite;
+}
+
+.status-dot.offline {
+  background: #f56c6c;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* 内容区域 */
+.page-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* 按钮触控优化 */
+.btn-touch {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-touch:active {
+  transform: scale(0.94);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease both;
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease both;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  color: #909399;
+}
+
+.empty-state .empty-icon {
+  font-size: 120px;
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+.empty-state .empty-text {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.empty-state .empty-desc {
+  font-size: 18px;
+  color: #c0c4cc;
+}
+
+/* Element Plus 覆写 - 大触控尺寸 */
+.el-button {
+  font-size: 18px !important;
+}
+
+.el-dialog {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+.el-dialog__header {
+  padding: 24px 28px !important;
+}
+
+.el-dialog__title {
+  font-size: 26px !important;
+  font-weight: 700;
+}
+
+.el-dialog__body {
+  padding: 24px 28px !important;
+}
+
+.el-message {
+  font-size: 20px !important;
+  padding: 18px 28px !important;
+}
+
+.el-message-box {
+  border-radius: 20px !important;
+}
+
+.el-message-box__title {
+  font-size: 24px !important;
+}
+
+.el-message-box__content {
+  font-size: 18px !important;
+}
+
+/* 加载状态 */
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
